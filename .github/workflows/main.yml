@@ -9,6 +9,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Update ngrok
+      run: |
+        .\ngrok\ngrok.exe update
+        if ($LASTEXITCODE -ne 0) { exit 1 }
+
     - name: Download ngrok
       run: Invoke-WebRequest -Uri "https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip" -OutFile ngrok.zip
 
@@ -31,4 +36,3 @@ jobs:
 
     - name: Create Tunnel
       run: .\ngrok\ngrok.exe tcp 3389
-      
