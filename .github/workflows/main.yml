@@ -24,7 +24,7 @@ jobs:
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         
     - name: Set Local User Password
-      run: net user runneradmin "${{ secrets.LOCAL_USER_PASSWORD }}"
+      run: net user runneradmin MySecurePassword123!
 
     - name: Create Tunnel
       run: ./ngrok tcp 3389
