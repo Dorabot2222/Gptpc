@@ -17,11 +17,11 @@ jobs:
 
     - name: Update ngrok
       run: |
-        ngrok update
+        "C:\path\to\ngrok\ngrok.exe" update
         if ($LASTEXITCODE -ne 0) { exit 1 }
 
     - name: Auth
-      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      run: "C:\path\to\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN"
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
 
@@ -35,4 +35,5 @@ jobs:
       run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
 
     - name: Create Tunnel
-      run: .\ngrok\ngrok.exe tcp 3389
+      run: "C:\path\to\ngrok\ngrok.exe tcp 3389"
+      
